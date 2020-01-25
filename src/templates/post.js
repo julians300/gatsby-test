@@ -10,9 +10,9 @@ export default ({ data }) => {
   if (!doc) return null
 
   return (
-    <div>
+    <Layout>
       <h1>{RichText.render(doc.node.title)}</h1>
-    </div>
+    </Layout>
   )
 }
 

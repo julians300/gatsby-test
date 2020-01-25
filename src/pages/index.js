@@ -11,9 +11,16 @@ const IndexPage = props => {
     <Layout>
       <SEO title="Home" />
       <h1>Blog</h1>
-      {props.data.prismic.allPosts.edges.map(post => (
-        <h2>{post.node.title[0].text}</h2>
-      ))}
+      {props.data.prismic.allPosts.edges.map(post => {
+        console.log(post)
+        return (
+          <h2>
+            <Link to={`posts/${post.node._meta.uid}`}>
+              {post.node.title[0].text}
+            </Link>
+          </h2>
+        )
+      })}
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
       </div>
@@ -29,6 +36,9 @@ export const query = graphql`
         edges {
           node {
             title
+            _meta {
+              uid
+            }
           }
         }
       }

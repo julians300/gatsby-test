@@ -41,8 +41,8 @@ module.exports = {
           {
             // (optional, builds pages dynamically)
             type: "Post", // TypeName from prismic
-            match: "/post/:uid", // Pages will be generated under this pattern
-            path: "/post", // Placeholder page for unpublished documents
+            match: "/posts/:uid", // Pages will be generated under this pattern
+            path: "/posts", // Placeholder page for unpublished documents
             component: require.resolve("./src/templates/post.js"),
           },
         ],

@@ -1,3 +1,6 @@
+require("dotenv").config({
+  path: `.env`,
+})
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -25,6 +28,24 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: "gatsby-source-prismic-graphql",
+      options: {
+        repositoryName: process.env.PRISMIC_REPOSITORY_NAME, // (REQUIRED, replace with your own)
+        saccessToken: process.env.PRISMIC_ACCESS_TOKEN,
+        path: "/preview", // (optional preview path. Default: /preview)
+        previews: true, // (optional, activated Previews. Default: false)
+        pages: [
+          {
+            // (optional, builds pages dynamically)
+            type: "Post", // TypeName from prismic
+            match: "/post/:uid", // Pages will be generated under this pattern
+            path: "/post", // Placeholder page for unpublished documents
+            component: require.resolve("./src/templates/post.js"),
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
